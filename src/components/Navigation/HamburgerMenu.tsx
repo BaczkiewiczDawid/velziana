@@ -1,6 +1,10 @@
 import { useState } from "react";
 import Hamburger from "hamburger-react";
-import { HamburgerWrapper, NavigationContent } from "components/Navigation/HamburgerMenu.style";
+import {
+  HamburgerWrapper,
+  NavigationContent,
+} from "components/Navigation/HamburgerMenu.style";
+import { Link } from 'react-router-dom';
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,9 +16,9 @@ const HamburgerMenu = () => {
       </HamburgerWrapper>
       {isOpen && (
         <NavigationContent>
-          <a href="">Link1</a>
-          <a href="">Link1</a>
-          <a href="">Link1</a>
+          <Link to="/">Dishes</Link>
+          <Link to="/bills">Bills</Link>
+          <Link to="/settings">Settings</Link>
         </NavigationContent>
       )}
     </>
