@@ -1,12 +1,16 @@
-import styled from 'styled-components';
-import logo from 'assets/images/logo.png';
+import Logo from 'components/Navigation/Logo';
+import HamburgerMenu from "components/Navigation/HamburgerMenu";
+import NavLinks from 'components/Navigation/NavLinks';
+import { Nav } from 'components/Navigation/Navigation.style';
 
 const Navigation = () => {
-    return (
-        <div>
-            <img src={logo} alt="" />
-        </div>
-    )
-}
+  return (
+    <Nav>
+      <Logo />
+      <HamburgerMenu />
+      <NavLinks />
+    </Nav>
+  );
+};
 
 export default Navigation;

@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import DishesList from "data/DishesList";
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const DishesListContainer = styled.article`
   display: flex;
   flex-direction: column;
@@ -15,11 +20,24 @@ const DishesListContainer = styled.article`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    margin-left: 30vw;
   }
+
+  @media screen and (min-width: 1080px) {
+    margin-left: 23vw;
+}
 `;
 
 const Title = styled.h1`
   margin-left: 1.2rem;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 30vw;
+  }
+
+  @media screen and (min-width: 1080px) {
+    margin-left: 23vw;
+}
 `;
 
 const Dish = styled.div`
@@ -35,6 +53,7 @@ const Dish = styled.div`
     object-fit: cover;
     width: 90vw;
     height: 30vh;
+    border-radius: 10px;
   }
 
   @media screen and (min-width: 768px) {
@@ -43,15 +62,21 @@ const Dish = styled.div`
     flex-wrap: wrap;
 
     img {
-        width: 30vw;
+      width: 30vw;
     }
 
     &:nth-child(n + 2) {
-        margin-top: 0;
+      margin-top: 0;
     }
 
-    &:nth-child(even) {
-        margin-left: 4rem;
+    padding: 0 1rem;
+  }
+
+  @media screen and (min-width: 1080px) {
+    width: 20vw;
+
+    img {
+        width: 20vw;
     }
 }
 `;
@@ -59,6 +84,14 @@ const Dish = styled.div`
 const ImgContainer = styled.div`
   width: 90vw;
   height: 30vh;
+
+  @media screen and (min-width: 768px) {
+    width: 30vw;
+  }
+
+  @media screen and (min-width: 1080px) {
+    width: 20vw;
+}
 `;
 
 const Details = styled.div`
@@ -69,6 +102,14 @@ const Details = styled.div`
   div {
     display: flex;
     align-items: center;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 30vw;
+  }
+
+  @media screen and (min-width: 1080px) {
+    width: 20vw;
   }
 `;
 
@@ -93,26 +134,23 @@ const Button = styled.button`
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.darkOrange};
-    transition: .2s;
+    transition: 0.2s;
   }
 
   @media screen and (min-width: 768px) {
-    padding: .7rem 1.2rem;
-}
+    padding: 0.7rem 1.2rem;
+  }
 `;
 
 const Dashboard = () => {
   return (
-    <>
+    <Wrapper>
       <Title>Main dishes</Title>
       <DishesListContainer>
         {DishesList.map((dish) => (
           <Dish key={dish.id}>
             <ImgContainer>
-              <img
-                src={dish.img}
-                alt={dish.alt}
-              />
+              <img src={dish.img} alt={dish.alt} />
             </ImgContainer>
             <p>{dish.name}</p>
             <Details>
@@ -157,7 +195,7 @@ const Dashboard = () => {
           </Details>
         </Dish> */}
       </DishesListContainer>
-    </>
+    </Wrapper>
   );
 };
 
