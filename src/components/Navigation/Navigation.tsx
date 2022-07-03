@@ -33,6 +33,10 @@ const Nav = styled.nav`
     -moz-box-shadow: 13px -1px 35px -15px rgba(66, 68, 90, 1);
     box-shadow: 13px -1px 35px -15px rgba(66, 68, 90, 1);
   }
+
+  @media screen and (min-width: 1080px) {
+    width: 17vw;
+}
 `;
 
 const Logo = styled.img`

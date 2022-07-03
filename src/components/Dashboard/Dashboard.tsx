@@ -15,13 +15,17 @@ const DishesListContainer = styled.article`
   margin: 3rem auto;
 
   @media screen and (min-width: 768px) {
-    width: 60vw;
+    width: 70vw;
     margin: none;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
     margin-left: 30vw;
   }
+
+  @media screen and (min-width: 1080px) {
+    margin-left: 23vw;
+}
 `;
 
 const Title = styled.h1`
@@ -30,6 +34,10 @@ const Title = styled.h1`
   @media screen and (min-width: 768px) {
     margin-left: 30vw;
   }
+
+  @media screen and (min-width: 1080px) {
+    margin-left: 23vw;
+}
 `;
 
 const Dish = styled.div`
@@ -45,10 +53,11 @@ const Dish = styled.div`
     object-fit: cover;
     width: 90vw;
     height: 30vh;
+    border-radius: 10px;
   }
 
   @media screen and (min-width: 768px) {
-    width: 20vw;
+    width: 30vw;
     flex-direction: row;
     flex-wrap: wrap;
 
@@ -60,15 +69,29 @@ const Dish = styled.div`
       margin-top: 0;
     }
 
-    &:nth-child(even) {
-      margin-left: 4rem;
-    }
+    padding: 0 1rem;
   }
+
+  @media screen and (min-width: 1080px) {
+    width: 20vw;
+
+    img {
+        width: 20vw;
+    }
+}
 `;
 
 const ImgContainer = styled.div`
   width: 90vw;
   height: 30vh;
+
+  @media screen and (min-width: 768px) {
+    width: 30vw;
+  }
+
+  @media screen and (min-width: 1080px) {
+    width: 20vw;
+}
 `;
 
 const Details = styled.div`
@@ -79,6 +102,14 @@ const Details = styled.div`
   div {
     display: flex;
     align-items: center;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 30vw;
+  }
+
+  @media screen and (min-width: 1080px) {
+    width: 20vw;
   }
 `;
 
