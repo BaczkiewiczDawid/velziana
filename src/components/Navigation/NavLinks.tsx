@@ -1,11 +1,12 @@
-import { NavLinksWrapper } from 'components/Navigation/NavLinks.style'
+import { NavLinksWrapper } from 'components/Navigation/NavLinks.style';
+import { Link } from 'react-router-dom';
 
 const NavLinks = () => {
   return (
     <NavLinksWrapper>
-      <a href="">Link1</a>
-      <a href="">Link2</a>
-      <a href="">Link3</a>
+      <Link to="/">Dishes</Link>
+      <Link to="/bills">Bills</Link>
+      <Link to="/settings">Settings</Link>
     </NavLinksWrapper>
   );
 };
