@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import DishesList from "data/DishesList";
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const DishesListContainer = styled.article`
   display: flex;
   flex-direction: column;
@@ -10,16 +15,21 @@ const DishesListContainer = styled.article`
   margin: 3rem auto;
 
   @media screen and (min-width: 768px) {
-    width: 70vw;
+    width: 60vw;
     margin: none;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    margin-left: 30vw;
   }
 `;
 
 const Title = styled.h1`
   margin-left: 1.2rem;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 30vw;
+  }
 `;
 
 const Dish = styled.div`
@@ -38,22 +48,22 @@ const Dish = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    width: 30vw;
+    width: 20vw;
     flex-direction: row;
     flex-wrap: wrap;
 
     img {
-        width: 30vw;
+      width: 30vw;
     }
 
     &:nth-child(n + 2) {
-        margin-top: 0;
+      margin-top: 0;
     }
 
     &:nth-child(even) {
-        margin-left: 4rem;
+      margin-left: 4rem;
     }
-}
+  }
 `;
 
 const ImgContainer = styled.div`
@@ -93,26 +103,23 @@ const Button = styled.button`
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.darkOrange};
-    transition: .2s;
+    transition: 0.2s;
   }
 
   @media screen and (min-width: 768px) {
-    padding: .7rem 1.2rem;
-}
+    padding: 0.7rem 1.2rem;
+  }
 `;
 
 const Dashboard = () => {
   return (
-    <>
+    <Wrapper>
       <Title>Main dishes</Title>
       <DishesListContainer>
         {DishesList.map((dish) => (
           <Dish key={dish.id}>
             <ImgContainer>
-              <img
-                src={dish.img}
-                alt={dish.alt}
-              />
+              <img src={dish.img} alt={dish.alt} />
             </ImgContainer>
             <p>{dish.name}</p>
             <Details>
@@ -157,7 +164,7 @@ const Dashboard = () => {
           </Details>
         </Dish> */}
       </DishesListContainer>
-    </>
+    </Wrapper>
   );
 };
 
