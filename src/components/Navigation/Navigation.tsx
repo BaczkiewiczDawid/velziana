@@ -1,7 +1,10 @@
+import styled from 'styled-components';
+import logo from 'assets/images/logo.png';
+
 const Navigation = () => {
     return (
         <div>
-            <p>nav</p>
+            <img src={logo} alt="" />
         </div>
     )
 }
