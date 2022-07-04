@@ -76,10 +76,9 @@ const Checkout = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin: 5rem auto;
-  background-color: ${({ theme }) => theme.colors.orange};
   width: 100vw;
-  height: 30vh;
-  color: ${({ theme }) => theme.colors.white};
+  min-height: 20vh;
+  color: ${({ theme }) => theme.colors.black};
   padding: 1rem;
 
   div {
@@ -87,8 +86,37 @@ const Checkout = styled.div`
     align-items: center;
 
     span {
-        margin-left: 2rem;
+      margin-left: 2rem;
     }
+  }
+
+  @media screen and (min-width: 768px) {
+    width: auto;
+    margin-left: 32vw;
+    background-color: transparent;
+  }
+`;
+
+const Button = styled.button`
+  width: 90vw;
+  padding: 1rem;
+  background-color: transparent;
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.black};
+  border: 2px solid ${({ theme }) => theme.colors.black};
+  cursor: pointer;
+  margin-top: 1rem;
+
+  &:hover {
+    transition: .2s;
+      background-color: ${({ theme }) => theme.colors.orange};
+      color: ${({ theme }) => theme.colors.white};
+      border: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: auto;
+    padding: 1rem 4rem;
   }
 `;
 
@@ -126,10 +154,10 @@ const ShoppingCart = () => {
       </Wrapper>
       <Checkout>
         <div>
-            <h3>Total</h3>
-            <span>$122</span>
+          <h3>Total</h3>
+          <span>$122</span>
         </div>
-        <button>Order now!</button>
+        <Button>Order now!</Button>
       </Checkout>
     </Container>
   );
