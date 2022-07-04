@@ -17,6 +17,7 @@ const HamburgerMenu = () => {
       {isOpen && (
         <NavigationContent>
           <Link to="/">Dishes</Link>
+          <Link to="/cart">Cart</Link>
           <Link to="/bills">Bills</Link>
           <Link to="/settings">Settings</Link>
         </NavigationContent>
