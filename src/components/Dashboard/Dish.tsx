@@ -7,11 +7,12 @@ type DishType = {
     name: string,
     price: number,
     grammage: number,
+    onClick: () => {}
 }
 
-const Dish = ({ id, img, alt, name, price, grammage}: DishType) => {
+const Dish = ({ id, img, alt, name, price, grammage, onClick}: DishType) => {
   return (
-    <StyledDish key={id}>
+    <StyledDish key={id} onClick={onClick}>
       <ImgContainer>
         <img src={img} alt={alt} />
       </ImgContainer>

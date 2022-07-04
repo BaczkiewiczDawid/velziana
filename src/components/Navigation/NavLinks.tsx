@@ -5,6 +5,7 @@ const NavLinks = () => {
   return (
     <NavLinksWrapper>
       <Link to="/">Dishes</Link>
+      <Link to="/cart">Cart</Link>
       <Link to="/bills">Bills</Link>
       <Link to="/settings">Settings</Link>
     </NavLinksWrapper>
