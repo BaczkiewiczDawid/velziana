@@ -5,6 +5,7 @@ export const Nav = styled.nav`
   justify-content: space-between;
   width: 95vw;
   margin: 1rem auto;
+  z-index: 999;
 
   @media screen and (min-width: 768px) {
     width: 25vw;
