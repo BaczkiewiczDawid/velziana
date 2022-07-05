@@ -13,9 +13,7 @@ type DishType = {
 }
 
 const Dish = ({ id, img, alt, name, price, grammage, onClick}: DishType) => {
-  const { handleShoppingCartItems, shoppingCartItems } = useContext(ShoppingCartContext);
-
-  console.log(shoppingCartItems)
+  const { handleShoppingCartItems } = useContext(ShoppingCartContext);
 
   return (
     <StyledDish key={id} onClick={onClick}>

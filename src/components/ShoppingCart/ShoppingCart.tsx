@@ -59,6 +59,20 @@ const ShoppingCart = () => {
     itemsList.push(foundItem);
   });
 
+  const sumPrice = (arr: number[]) => {
+    const totalPrice: number = arr.reduce((a, b) => a + b, 0);
+    
+    return totalPrice
+  }
+
+  const pricesList: number[] = [];
+
+  itemsList.forEach((item) => {
+      pricesList.push(item.price);
+  })
+
+  const totalPrice: number = sumPrice(pricesList);
+
   return (
     <Container>
       <Wrapper>
@@ -77,7 +91,7 @@ const ShoppingCart = () => {
           })}
         </CartItemsWrapper>
       </Wrapper>
-      <Checkout />
+      <Checkout totalPrice={totalPrice} />
     </Container>
   );
 };
