@@ -1,4 +1,6 @@
 import { StyledDish, ImgContainer, Details, Price, Grammage, Button } from 'components/Dashboard/Dish.style';
+import { useContext } from "react";
+import { ShoppingCartContext } from "context/ShoppingCartContext";
 
 type DishType = {
     id: number,
@@ -11,6 +13,10 @@ type DishType = {
 }
 
 const Dish = ({ id, img, alt, name, price, grammage, onClick}: DishType) => {
+  const { handleShoppingCartItems, shoppingCartItems } = useContext(ShoppingCartContext);
+
+  console.log(shoppingCartItems)
+
   return (
     <StyledDish key={id} onClick={onClick}>
       <ImgContainer>
@@ -22,7 +28,7 @@ const Dish = ({ id, img, alt, name, price, grammage, onClick}: DishType) => {
           <Price>${price}</Price>
           <Grammage>{grammage}g</Grammage>
         </div>
-        <Button>Add to cart</Button>
+        <Button onClick={() => handleShoppingCartItems(id)}>Add to cart</Button>
       </Details>
     </StyledDish>
   );

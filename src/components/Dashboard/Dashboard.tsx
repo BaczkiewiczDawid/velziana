@@ -9,9 +9,7 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "context/ShoppingCartContext";
 
 const Dashboard = () => {
-  const { isOpen, handleOpen } = useContext(ShoppingCartContext)
-
-  console.log(isOpen);
+  const { handleOpen } = useContext(ShoppingCartContext)
 
   return (
     <Wrapper>
