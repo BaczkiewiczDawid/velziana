@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { ShoppingCartContext } from "context/ShoppingCartContext";
 import DishesList from "data/DishesList";
+import CartItem from "components/ShoppingCart/CartItem";
+import Checkout from "components/ShoppingCart/Checkout";
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -33,104 +35,18 @@ const CartItemsWrapper = styled.section`
   }
 `;
 
-const CartItem = styled.article`
-  display: flex;
-
-  &:nth-child(n + 2) {
-    margin-top: 4rem;
-  }
-`;
-
-const Details = styled.div`
-  margin-left: 1rem;
-
-  h2 {
-    color: ${({ theme }) => theme.colors.black};
-    margin-top: 0.5rem;
-  }
-
-  p {
-    color: ${({ theme }) => theme.colors.black};
-  }
-`;
-
-const ImgWrapper = styled.div`
-  img {
-    width: 40vw;
-    height: 24vh;
-    object-fit: cover;
-  }
-
-  @media screen and (min-width: 768px) {
-    img {
-      width: 17vw;
-      height: 17vh;
-    }
-  }
-`;
-
 const Container = styled.div`
   position: relative;
 `;
 
-const Checkout = styled.div`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin: 5rem auto;
-  width: 100vw;
-  min-height: 20vh;
-  color: ${({ theme }) => theme.colors.black};
-  padding: 1rem;
-
-  div {
-    display: flex;
-    align-items: center;
-
-    span {
-      margin-left: 2rem;
-    }
-  }
-
-  @media screen and (min-width: 768px) {
-    width: auto;
-    margin-left: 32vw;
-    background-color: transparent;
-  }
-`;
-
-const Button = styled.button`
-  width: 90vw;
-  padding: 1rem;
-  background-color: transparent;
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.black};
-  border: 2px solid ${({ theme }) => theme.colors.black};
-  cursor: pointer;
-  margin-top: 1rem;
-
-  &:hover {
-    transition: 0.2s;
-    background-color: ${({ theme }) => theme.colors.orange};
-    color: ${({ theme }) => theme.colors.white};
-    border: none;
-  }
-
-  @media screen and (min-width: 768px) {
-    width: auto;
-    padding: 1rem 4rem;
-  }
-`;
-
 type ItemsType = {
-  id: number,
-  name: string,
-  img: string,
-  alt: string,
-  price: number,
-  grammage: number
-}
+  id: number;
+  name: string;
+  img: string;
+  alt: string;
+  price: number;
+  grammage: number;
+};
 
 const ShoppingCart = () => {
   const { shoppingCartItems } = useContext(ShoppingCartContext);
@@ -150,29 +66,18 @@ const ShoppingCart = () => {
         <CartItemsWrapper>
           {itemsList.map((item) => {
             return (
-              <CartItem>
-                <ImgWrapper>
-                  <img
-                    src={item.img}
-                    alt={item.alt}
-                  />
-                </ImgWrapper>
-                <Details>
-                  <h2>{item.name}</h2>
-                  <p>${item.price}</p>
-                </Details>
-              </CartItem>
+              <CartItem
+                key={item.id}
+                img={item.img}
+                alt={item.alt}
+                name={item.name}
+                price={item.price}
+              />
             );
           })}
         </CartItemsWrapper>
       </Wrapper>
-      <Checkout>
-        <div>
-          <h3>Total</h3>
-          <span>$122</span>
-        </div>
-        <Button>Order now!</Button>
-      </Checkout>
+      <Checkout />
     </Container>
   );
 };
