@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { useContext, useState, useEffect } from "react";
+import { ShoppingCartContext } from "context/ShoppingCartContext";
+import DishesList from "data/DishesList";
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -108,10 +111,10 @@ const Button = styled.button`
   margin-top: 1rem;
 
   &:hover {
-    transition: .2s;
-      background-color: ${({ theme }) => theme.colors.orange};
-      color: ${({ theme }) => theme.colors.white};
-      border: none;
+    transition: 0.2s;
+    background-color: ${({ theme }) => theme.colors.orange};
+    color: ${({ theme }) => theme.colors.white};
+    border: none;
   }
 
   @media screen and (min-width: 768px) {
@@ -120,36 +123,47 @@ const Button = styled.button`
   }
 `;
 
+type ItemsType = {
+  id: number,
+  name: string,
+  img: string,
+  alt: string,
+  price: number,
+  grammage: number
+}
+
 const ShoppingCart = () => {
+  const { shoppingCartItems } = useContext(ShoppingCartContext);
+
+  const itemsList: ItemsType[] = [];
+
+  shoppingCartItems.forEach((el: number) => {
+    const foundItem: any = DishesList.find((dish) => dish.id === el);
+
+    itemsList.push(foundItem);
+  });
+
   return (
     <Container>
       <Wrapper>
         <h1>ShoppingCart</h1>
         <CartItemsWrapper>
-          <CartItem>
-            <ImgWrapper>
-              <img
-                src="https://images.unsplash.com/photo-1567423285116-c31e6a93e939?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
-                alt=""
-              />
-            </ImgWrapper>
-            <Details>
-              <h2>Name</h2>
-              <p>Price</p>
-            </Details>
-          </CartItem>
-          <CartItem>
-            <ImgWrapper>
-              <img
-                src="https://images.unsplash.com/photo-1567423285116-c31e6a93e939?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
-                alt=""
-              />
-            </ImgWrapper>
-            <Details>
-              <h2>Name</h2>
-              <p>Price</p>
-            </Details>
-          </CartItem>
+          {itemsList.map((item) => {
+            return (
+              <CartItem>
+                <ImgWrapper>
+                  <img
+                    src={item.img}
+                    alt={item.alt}
+                  />
+                </ImgWrapper>
+                <Details>
+                  <h2>{item.name}</h2>
+                  <p>${item.price}</p>
+                </Details>
+              </CartItem>
+            );
+          })}
         </CartItemsWrapper>
       </Wrapper>
       <Checkout>
