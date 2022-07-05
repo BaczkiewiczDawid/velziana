@@ -3,9 +3,10 @@
     "baseUrl": "src",
     "target": "es6",
     "lib": [
+      "es5",
+      "es6",
       "dom",
-      "dom.iterable",
-      "esnext"
+      "DOM.Iterable"
     ],
     "allowJs": true,
     "skipLibCheck": true,
