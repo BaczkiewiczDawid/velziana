@@ -7,12 +7,14 @@ import {
 } from "components/Dashboard/Dashboard.style";
 import { useContext } from "react";
 import { ShoppingCartContext } from "context/ShoppingCartContext";
+import Modal from 'components/Modal/Modal';
 
 const Dashboard = () => {
-  const { handleOpen } = useContext(ShoppingCartContext)
+  const { handleOpen, isModalOpen } = useContext(ShoppingCartContext);
 
   return (
     <Wrapper>
+      {isModalOpen && <Modal isSuccess={false} />}
       <Title>Main dishes</Title>
       <DishesListContainer>
         {DishesList.map((dish) => (

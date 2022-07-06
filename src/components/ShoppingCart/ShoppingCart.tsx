@@ -4,6 +4,7 @@ import { ShoppingCartContext } from "context/ShoppingCartContext";
 import DishesList from "data/DishesList";
 import CartItem from "components/ShoppingCart/CartItem";
 import Checkout from "components/ShoppingCart/Checkout";
+import Modal from "components/Modal/Modal";
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -62,15 +63,15 @@ const ShoppingCart = () => {
 
   const sumPrice = (arr: number[]) => {
     const totalPrice: number = arr.reduce((a, b) => a + b, 0);
-    
+
     return totalPrice;
-  }
+  };
 
   const pricesList: number[] = [];
 
   itemsList.forEach((item) => {
-      pricesList.push(item.price);
-  })
+    pricesList.push(item.price);
+  });
 
   const totalPrice: number = sumPrice(pricesList);
 
