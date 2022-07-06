@@ -29,6 +29,7 @@ export const DishesListContainer = styled.article`
 
 export const Title = styled.h1`
   margin-left: 1.2rem;
+  color: ${({ theme }) => theme.colors.black};
 
   @media screen and (min-width: 768px) {
     margin-left: 30vw;

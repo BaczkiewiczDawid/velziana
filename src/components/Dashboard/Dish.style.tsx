@@ -4,6 +4,7 @@ export const StyledDish = styled.div`
   display: flex;
   flex-direction: column;
   width: 90vw;
+  min-height: 25rem;
 
   &:nth-child(n + 2) {
     margin-top: 4rem;
@@ -25,11 +26,11 @@ export const StyledDish = styled.div`
       width: 30vw;
     }
 
-    &:nth-child(n + 2) {
-      margin-top: 0;
+    &:nth-child(n + 1) {
+      margin-top: 0rem;
     }
 
-    padding: 0 1rem;
+    padding: 0rem 1rem 4rem 1rem;
   }
 
   @media screen and (min-width: 1080px) {

@@ -10,18 +10,31 @@ export const ShoppingCartContext: any = createContext({});
 
 const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [shoppingCartItems, setShoppingCartItems] = useState<Cart>([]);
 
   const handleOpen = () => {
     setIsOpen(!isOpen);
   };
 
+  const deleteItem = (id: number) => {
+    setShoppingCartItems(shoppingCartItems?.filter((item) => item !== id));
+  }
+
   const handleShoppingCartItems = (id: number) => {
-    if (shoppingCartItems?.find((el) => el === id)) {
+    if (shoppingCartItems?.find((el) => el === id) || shoppingCartItems!?.length >= 3) {
+      showModal(id)
       return
     }
+
     setShoppingCartItems((prevState) => [...(prevState) || [], id]);
   };
+
+  const showModal = (id: number) => {
+    if (shoppingCartItems!?.length >= 3) {
+      setIsModalOpen(true);
+    }
+  }
 
   return (
     <ShoppingCartContext.Provider
@@ -31,6 +44,8 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
         handleOpen,
         shoppingCartItems,
         handleShoppingCartItems,
+        deleteItem,
+        isModalOpen,
       }}
     >
       {children}
