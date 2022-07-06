@@ -16,10 +16,15 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
     setIsOpen(!isOpen);
   };
 
+  const deleteItem = (id: number) => {
+    setShoppingCartItems(shoppingCartItems?.filter((item) => item !== id))
+  }
+
   const handleShoppingCartItems = (id: number) => {
-    if (shoppingCartItems?.find((el) => el === id)) {
+    if (shoppingCartItems?.find((el) => el === id) || shoppingCartItems!?.length >= 3) {
       return
     }
+
     setShoppingCartItems((prevState) => [...(prevState) || [], id]);
   };
 
@@ -31,6 +36,7 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
         handleOpen,
         shoppingCartItems,
         handleShoppingCartItems,
+        deleteItem,
       }}
     >
       {children}

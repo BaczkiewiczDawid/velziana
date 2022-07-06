@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ItemWrapper = styled.article`
   display: flex;
+  align-items: flex-start;
 
   &:nth-child(n + 2) {
     margin-top: 4rem;
@@ -10,6 +11,7 @@ export const ItemWrapper = styled.article`
 
 export const Details = styled.div`
   margin-left: 1rem;
+  max-width: 60%;
 
   h2 {
     color: ${({ theme }) => theme.colors.black};
@@ -34,4 +36,9 @@ export const ImgWrapper = styled.div`
       height: 17vh;
     }
   }
+`;
+
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
 `;

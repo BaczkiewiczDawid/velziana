@@ -46,10 +46,11 @@ type ItemsType = {
   alt: string;
   price: number;
   grammage: number;
+  deleteItem: () => {};
 };
 
 const ShoppingCart = () => {
-  const { shoppingCartItems } = useContext(ShoppingCartContext);
+  const { shoppingCartItems, deleteItem } = useContext(ShoppingCartContext);
 
   const itemsList: ItemsType[] = [];
 
@@ -62,7 +63,7 @@ const ShoppingCart = () => {
   const sumPrice = (arr: number[]) => {
     const totalPrice: number = arr.reduce((a, b) => a + b, 0);
     
-    return totalPrice
+    return totalPrice;
   }
 
   const pricesList: number[] = [];
@@ -82,10 +83,12 @@ const ShoppingCart = () => {
             return (
               <CartItem
                 key={item.id}
+                id={item.id}
                 img={item.img}
                 alt={item.alt}
                 name={item.name}
                 price={item.price}
+                deleteItem={deleteItem}
               />
             );
           })}

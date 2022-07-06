@@ -2,16 +2,20 @@ import {
   ItemWrapper,
   ImgWrapper,
   Details,
+  Container
 } from "components/ShoppingCart/CartItem.style";
+import DeleteBtn from "components/ShoppingCart/DeleteBtn";
 
 type Item = {
+  id: number;
   img: string;
   alt: string;
   name: string;
   price: number;
+  deleteItem: (id: number) => {}
 };
 
-const CartItem = ({ img, alt, name, price }: Item) => {
+const CartItem = ({ id, img, alt, name, price, deleteItem }: Item) => {
   return (
     <ItemWrapper>
       <ImgWrapper>
@@ -19,7 +23,10 @@ const CartItem = ({ img, alt, name, price }: Item) => {
       </ImgWrapper>
       <Details>
         <h2>{name}</h2>
-        <p>${price}</p>
+        <Container>
+          <p>${price}</p>
+          <DeleteBtn onClick={() => deleteItem(id)} />
+        </Container>
       </Details>
     </ItemWrapper>
   );
