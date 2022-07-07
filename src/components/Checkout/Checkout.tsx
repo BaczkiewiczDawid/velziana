@@ -1,6 +1,8 @@
-import { useState } from "react";
-import { FormWrapper, Input } from "components/Checkout/Checkout.style";
+import { useState, useContext } from "react";
+import { FormWrapper, Input, Container } from "components/Checkout/Checkout.style";
 import Button from "components/ShoppingCart/Button";
+import { useNavigate } from "react-router-dom";
+import { ShoppingCartContext } from "context/ShoppingCartContext";
 
 const Checkout = () => {
   const [inputValues, setInputValues] = useState({
@@ -14,6 +16,9 @@ const Checkout = () => {
     city: "",
   });
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
+
+  const { setShoppingCartItems } = useContext(ShoppingCartContext);
 
   const handleInputValues = (e: any) => {
     const inputsVal = {
@@ -26,7 +31,12 @@ const Checkout = () => {
   console.log(inputValues);
 
   const handleNextPage = () => {
-    setPage(page + 1);
+    if (page < 3) {
+      setPage(page + 1);
+    } else {
+      setShoppingCartItems([])
+      navigate('/', { replace: true})
+    }
   };
 
   return (
@@ -107,10 +117,23 @@ const Checkout = () => {
         {page === 3 && (
           <>
             <h1>Almost done!</h1>
-            <h2>Select table</h2>
+            <Container>
+              <label htmlFor="">Date</label>
+              <input type="date" name="" id="" />
+              <label htmlFor="">Reservation time</label>
+              <select name="hours" id="">
+                <option value="">8:00 - 10:00</option>
+                <option value="">10:00 - 12:00</option>
+                <option value="">12:00 - 14:00</option>
+                <option value="">14:00 - 16:00</option>
+                <option value="">16:00 - 18:00</option>
+                <option value="">18:00 - 20:00</option>
+                <option value="">20:00 - 22:00</option>
+              </select>
+            </Container>
           </>
         )}
-        <Button text="Next" onClick={handleNextPage} />
+        <Button text={page === 3 ? 'Make reservation' : 'Next'} onClick={handleNextPage} />
       </FormWrapper>
     </>
   );

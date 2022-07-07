@@ -25,3 +25,18 @@ export const Input = styled.input<CheckoutProps>`
   border: 1px solid ${({ theme }) => theme.colors.black};
   border-radius: 0.4rem;
 `;
+
+export const Container = styled.form`
+    display: flex;
+    flex-direction: column;
+    color: ${({ theme }) => theme.colors.black};
+
+    input {
+        margin-top: 1rem;
+    }
+
+    select {
+        margin-top: 1rem;
+        margin-bottom: 4rem;
+    }
+`;

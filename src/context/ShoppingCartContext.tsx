@@ -43,6 +43,7 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
         setIsOpen,
         handleOpen,
         shoppingCartItems,
+        setShoppingCartItems,
         handleShoppingCartItems,
         deleteItem,
         isModalOpen,
