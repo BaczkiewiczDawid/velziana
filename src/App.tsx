@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "components/Dashboard/Dashboard";
 import ShoppingCart from "components/ShoppingCart/ShoppingCart";
 import Navigation from "components/Navigation/Navigation";
+import Checkout from "components/Checkout/Checkout";
 import styled from "styled-components";
 import ShoppingCartProvider from "context/ShoppingCartContext";
 
@@ -29,6 +30,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/cart" element={<ShoppingCart />} />
+                <Route path="/checkout" element={<Checkout />} />
               </Routes>
             </Router>
           </ShoppingCartProvider>
