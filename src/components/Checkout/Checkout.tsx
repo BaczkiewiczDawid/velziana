@@ -28,9 +28,15 @@ const Checkout = () => {
     setInputValues({ ...inputsVal, [e.target.name]: e.target.value });
   };
 
-  console.log(inputValues);
-
   const handleNextPage = () => {
+    if (page === 1 && (inputValues.firstName === '' || inputValues.lastName === '' || inputValues.email === '' || inputValues.phoneNumber === '')) {
+      return;
+    }
+
+    if (page === 2 && (inputValues.addressLine1 === '' ||  inputValues.postalCode === '' || inputValues.city === '')) {
+      return;
+    }
+
     if (page < 3) {
       setPage(page + 1);
     } else {
@@ -119,9 +125,9 @@ const Checkout = () => {
             <h1>Almost done!</h1>
             <Container>
               <label htmlFor="">Date</label>
-              <input type="date" name="" id="" />
+              <input type="date"/>
               <label htmlFor="">Reservation time</label>
-              <select name="hours" id="">
+              <select name="hours">
                 <option value="">8:00 - 10:00</option>
                 <option value="">10:00 - 12:00</option>
                 <option value="">12:00 - 14:00</option>
