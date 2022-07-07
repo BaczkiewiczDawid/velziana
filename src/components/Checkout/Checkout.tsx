@@ -4,16 +4,26 @@ import Button from "components/ShoppingCart/Button";
 
 const Checkout = () => {
   const [inputValues, setInputValues] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    addressLine1: '',
-    addressLine2: '',
-    postalCode: '',
-    city: '',
-  })
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    addressLine1: "",
+    addressLine2: "",
+    postalCode: "",
+    city: "",
+  });
   const [page, setPage] = useState(1);
+
+  const handleInputValues = (e: any) => {
+    const inputsVal = {
+      ...inputValues,
+    };
+
+    setInputValues({ ...inputsVal, [e.target.name]: e.target.value });
+  };
+
+  console.log(inputValues);
 
   const handleNextPage = () => {
     setPage(page + 1);
@@ -25,28 +35,82 @@ const Checkout = () => {
         {page === 1 && (
           <>
             <label htmlFor="">First name</label>
-            <Input type="text" placeholder="First name" secondary={false} />
+            <Input
+              type="text"
+              name="firstName"
+              placeholder="First name"
+              secondary={false}
+              onChange={(e) => handleInputValues(e)}
+            />
             <label htmlFor="">Last name</label>
-            <Input type="text" placeholder="Last name" secondary={false} />
+            <Input
+              type="text"
+              name="lastName"
+              placeholder="Last name"
+              secondary={false}
+              onChange={(e) => handleInputValues(e)}
+            />
             <label htmlFor="">E-Mail</label>
-            <Input type="text" placeholder="E-Mail" secondary={false} />
+            <Input
+              type="text"
+              name="email"
+              placeholder="E-Mail"
+              secondary={false}
+              onChange={(e) => handleInputValues(e)}
+            />
             <label htmlFor="">Phone number</label>
-            <Input type="phone" placeholder="Phone number" secondary={true} />
+            <Input
+              type="phone"
+              name="phoneNumber"
+              placeholder="Phone number"
+              secondary={true}
+              onChange={(e) => handleInputValues(e)}
+            />
           </>
         )}
-        {page === 2 ? (
+        {page === 2 && (
           <>
             <label htmlFor="">Address line 1</label>
-            <Input type="text" placeholder="Address line 1" secondary={false} />
+            <Input
+              type="text"
+              name="addressLine1"
+              placeholder="Address line 1"
+              secondary={false}
+              onChange={(e) => handleInputValues(e)}
+            />
             <label htmlFor="">Address line 2</label>
-            <Input type="text" placeholder="Address line 2" secondary={false} />
+            <Input
+              type="text"
+              name="addressLine2"
+              placeholder="Address line 2"
+              secondary={false}
+              onChange={(e) => handleInputValues(e)}
+            />
             <label htmlFor="">Postal code</label>
-            <Input type="number" placeholder="Postal code" secondary={false} />
+            <Input
+              type="number"
+              name="postalCode"
+              placeholder="Postal code"
+              secondary={false}
+              onChange={(e) => handleInputValues(e)}
+            />
             <label htmlFor="">City</label>
-            <Input type="text" placeholder="City" secondary={true} />
+            <Input
+              type="text"
+              name="city"
+              placeholder="City"
+              secondary={true}
+              onChange={(e) => handleInputValues(e)}
+            />
           </>
-        ) : null}
-        <Button text="Next" onClick={(handleNextPage)} />
+        )}
+        {page === 3 && (
+          <>
+            <h1>Almost done!</h1>
+            <h2>Select table</h2>
+          </>
+        )}
+        <Button text="Next" onClick={handleNextPage} />
       </FormWrapper>
     </>
   );
