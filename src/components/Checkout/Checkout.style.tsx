@@ -15,6 +15,11 @@ export const FormWrapper = styled.form`
     margin-top: 2rem;
     font-weight: 700;
   }
+
+  @media screen and (min-width: 768px) {
+    width: 65vw;
+    margin-left: 30vw;
+  }
 `;
 
 export const Input = styled.input<CheckoutProps>`
@@ -24,6 +29,10 @@ export const Input = styled.input<CheckoutProps>`
   padding: 1rem;
   border: 1px solid ${({ theme }) => theme.colors.black};
   border-radius: 0.4rem;
+
+  @media screen and (min-width: 768px) {
+    width: 80%;
+  }
 `;
 
 export const Container = styled.form`
