@@ -8,7 +8,7 @@ import { useState } from "react";
 import successIcon from "assets/images/success.svg";
 import errorIcon from "assets/images/error.svg";
 
-const Modal = ({ isSuccess }: ModalType) => {
+const Modal = ({ isSuccess, message }: ModalType) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const hideModal = () => {
@@ -25,7 +25,7 @@ const Modal = ({ isSuccess }: ModalType) => {
         <Wrapper>
           <Content isSuccess={isSuccess}>
             <img src={isSuccess ? successIcon : errorIcon} alt="" />
-            <p>Cant add more than 3 dishes</p>
+            <p>{message}</p>
           </Content>
           <Timer isSuccess={isSuccess}></Timer>
         </Wrapper>
