@@ -14,7 +14,7 @@ const Dashboard = () => {
 
   return (
     <Wrapper>
-      {isModalOpen && <Modal isSuccess={false} />}
+      {isModalOpen && <Modal message="Can't add more than 3 dishes" isSuccess={false} />}
       <Title>Main dishes</Title>
       <DishesListContainer>
         {DishesList.map((dish) => (

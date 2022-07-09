@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 
 export type ModalType = {
   isSuccess: boolean;
+  message?: string,
 };
 
 export const timingAnimation = keyframes`

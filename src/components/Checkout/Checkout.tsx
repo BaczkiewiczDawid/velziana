@@ -1,10 +1,20 @@
-import { useState, useContext } from "react";
-import { FormWrapper, Input, Container } from "components/Checkout/Checkout.style";
+import { useState, useContext, useEffect } from "react";
+import {
+  FormWrapper,
+  Input,
+  Container,
+} from "components/Checkout/Checkout.style";
 import Button from "components/ShoppingCart/Button";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "context/ShoppingCartContext";
+import Axios from "axios";
+import Modal from "components/Modal/Modal";
 
 const Checkout = () => {
+  type ResponseType = {
+    isReserved: boolean | null
+  }
+
   const [inputValues, setInputValues] = useState({
     firstName: "",
     lastName: "",
@@ -14,8 +24,13 @@ const Checkout = () => {
     addressLine2: "",
     postalCode: "",
     city: "",
+    date: "",
+    time: "",
   });
   const [page, setPage] = useState(1);
+  const [response, setResponse] = useState<ResponseType>({
+    isReserved: null,
+  });
   const navigate = useNavigate();
 
   const { setShoppingCartItems } = useContext(ShoppingCartContext);
@@ -29,24 +44,60 @@ const Checkout = () => {
   };
 
   const handleNextPage = () => {
-    if (page === 1 && (inputValues.firstName === '' || inputValues.lastName === '' || inputValues.email === '' || inputValues.phoneNumber === '')) {
+    if (
+      page === 1 &&
+      (inputValues.firstName === "" ||
+        inputValues.lastName === "" ||
+        inputValues.email === "" ||
+        inputValues.phoneNumber === "")
+    ) {
       return;
     }
 
-    if (page === 2 && (inputValues.addressLine1 === '' ||  inputValues.postalCode === '' || inputValues.city === '')) {
+    if (
+      page === 2 &&
+      (inputValues.addressLine1 === "" ||
+        inputValues.postalCode === "" ||
+        inputValues.city === "")
+    ) {
       return;
     }
 
     if (page < 3) {
       setPage(page + 1);
     } else {
-      setShoppingCartItems([])
-      navigate('/', { replace: true})
+      handleReservation();
+      setShoppingCartItems([]);
     }
   };
 
+  const handleReservation = () => {
+    const data = {
+      date: inputValues.date,
+      time: inputValues.time,
+    };
+
+    Axios.post("http://localhost:5000/reservation", {
+      data,
+    }).then((response) => {
+      setResponse(response.data);
+      setResponse({
+        isReserved: response.data === "Already reserved" ? true : false,
+      });
+    });
+  };
+
+  useEffect(() => {
+    if (response?.isReserved === false) {
+      navigate("/", { replace: true });
+    }
+  }, [response, navigate])
+
   return (
     <>
+      {response.isReserved && page === 3 ? (
+        <Modal message="Already reserved" isSuccess={false} />
+      ) : null}
       <FormWrapper>
         {page === 1 && (
           <>
@@ -125,21 +176,28 @@ const Checkout = () => {
             <h1>Almost done!</h1>
             <Container>
               <label htmlFor="">Date</label>
-              <input type="date"/>
-              <label htmlFor="">Reservation time</label>
-              <select name="hours">
-                <option value="">8:00 - 10:00</option>
-                <option value="">10:00 - 12:00</option>
-                <option value="">12:00 - 14:00</option>
-                <option value="">14:00 - 16:00</option>
-                <option value="">16:00 - 18:00</option>
-                <option value="">18:00 - 20:00</option>
-                <option value="">20:00 - 22:00</option>
+              <input
+                type="date"
+                name="date"
+                onChange={(e) => handleInputValues(e)}
+              />
+              <label>Reservation time</label>
+              <select name="time" onChange={(e) => handleInputValues(e)}>
+                <option value="8:00 - 10:00">8:00 - 10:00</option>
+                <option value="10:00 - 12:00">10:00 - 12:00</option>
+                <option value="12:00 - 14:00">12:00 - 14:00</option>
+                <option value="14:00 - 16:00">14:00 - 16:00</option>
+                <option value="16:00 - 18:00">16:00 - 18:00</option>
+                <option value="18:00 - 20:00">18:00 - 20:00</option>
+                <option value="20:00 - 22:00">20:00 - 22:00</option>
               </select>
             </Container>
           </>
         )}
-        <Button text={page === 3 ? 'Make reservation' : 'Next'} onClick={handleNextPage} />
+        <Button
+          text={page === 3 ? "Make reservation" : "Next"}
+          onClick={handleNextPage}
+        />
       </FormWrapper>
     </>
   );
