@@ -8,6 +8,7 @@ import Navigation from "components/Navigation/Navigation";
 import Checkout from "components/Checkout/Checkout";
 import styled from "styled-components";
 import ShoppingCartProvider from "context/ShoppingCartContext";
+import Main from "components/Main/Main";
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,6 +27,7 @@ function App() {
         <Wrapper>
           <ShoppingCartProvider>
             <Router>
+              <Main />
               <Navigation />
               <Routes>
                 <Route path="/" element={<Dashboard />} />
