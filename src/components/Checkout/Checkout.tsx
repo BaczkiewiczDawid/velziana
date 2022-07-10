@@ -15,9 +15,10 @@ const Checkout = () => {
     isReserved: boolean | null
   }
 
+  const name = localStorage.getItem('currentUser');
+
   const [inputValues, setInputValues] = useState({
-    firstName: "",
-    lastName: "",
+    fullName: name,
     email: "",
     phoneNumber: "",
     addressLine1: "",
@@ -46,8 +47,7 @@ const Checkout = () => {
   const handleNextPage = () => {
     if (
       page === 1 &&
-      (inputValues.firstName === "" ||
-        inputValues.lastName === "" ||
+      (inputValues.fullName === "" ||
         inputValues.email === "" ||
         inputValues.phoneNumber === "")
     ) {
@@ -101,21 +101,15 @@ const Checkout = () => {
       <FormWrapper>
         {page === 1 && (
           <>
-            <label htmlFor="">First name</label>
+            <label htmlFor="">Full name</label>
             <Input
               type="text"
-              name="firstName"
-              placeholder="First name"
+              name="fullName"
+              placeholder="Full name"
+              value={name?.toString()}
               secondary={false}
               onChange={(e) => handleInputValues(e)}
-            />
-            <label htmlFor="">Last name</label>
-            <Input
-              type="text"
-              name="lastName"
-              placeholder="Last name"
-              secondary={false}
-              onChange={(e) => handleInputValues(e)}
+              disabled
             />
             <label htmlFor="">E-Mail</label>
             <Input
