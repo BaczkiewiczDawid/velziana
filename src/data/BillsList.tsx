@@ -20,6 +20,9 @@ const BillsList = [
       },
     ],
     totalPrice: 149,
+    date: 'Sep 12, 2022 Sun 12:43PM',
+    table: 3,
+    orderNum: 32
   },
   {
     id: 10002,
@@ -42,6 +45,9 @@ const BillsList = [
       },
     ],
     totalPrice: 43,
+    date: 'Sep 12, 2022 Sun 12:43PM',
+    table: 3,
+    orderNum: 46,
   },
 ];
 
