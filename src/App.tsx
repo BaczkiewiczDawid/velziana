@@ -9,6 +9,7 @@ import Checkout from "components/Checkout/Checkout";
 import styled from "styled-components";
 import ShoppingCartProvider from "context/ShoppingCartContext";
 import Main from "components/Main/Main";
+import Bills from 'components/Bills/Bills';
 
 const Wrapper = styled.div`
   display: flex;
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/cart" element={<ShoppingCart />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="/bills" element={<Bills />} />
               </Routes>
             </Router>
           </ShoppingCartProvider>
