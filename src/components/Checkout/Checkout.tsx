@@ -15,18 +15,34 @@ const Checkout = () => {
     isReserved: boolean | null;
   };
 
+  type InputType = {
+    fullName: string,
+    email: string,
+    phoneNumber: string,
+    addressLine1: string | number,
+    addressLine2: string | number,
+    postalCode: string,
+    city: string,
+    date: String | Date,
+    time: string,
+    table: number
+  }
+
   const name = localStorage.getItem("currentUser");
 
-  const [inputValues, setInputValues] = useState({
-    fullName: name,
+  const today = new Date();
+
+  const [inputValues, setInputValues] = useState<InputType>({
+    fullName: name!,
     email: "",
     phoneNumber: "",
     addressLine1: "",
     addressLine2: "",
     postalCode: "",
     city: "",
-    date: "",
-    time: "",
+    date: today,
+    time: "8:00 - 10:00",
+    table: 1
   });
   const [page, setPage] = useState(1);
   const [response, setResponse] = useState<ResponseType>({
@@ -75,6 +91,7 @@ const Checkout = () => {
     const data = {
       date: inputValues.date,
       time: inputValues.time,
+      table: inputValues.table,
     };
 
     Axios.post("http://localhost:3001/reservation", {
@@ -185,6 +202,12 @@ const Checkout = () => {
                 <option value="16:00 - 18:00">16:00 - 18:00</option>
                 <option value="18:00 - 20:00">18:00 - 20:00</option>
                 <option value="20:00 - 22:00">20:00 - 22:00</option>
+              </select>
+              <label>Table</label>
+              <select name="table" onChange={(e) => handleInputValues(e)}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
               </select>
             </Container>
           </>
