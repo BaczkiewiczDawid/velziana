@@ -75,13 +75,17 @@ const Checkout = () => {
     const data = {
       date: inputValues.date,
       time: inputValues.time,
-    }
+    };
 
-    Axios.get("http://localhost:3001/reservation").then((response) => {
-      console.log(response)
-    }).catch((err) => {
-      console.log(err)
+    Axios.post("http://localhost:3001/reservation", {
+      data: data,
     })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
