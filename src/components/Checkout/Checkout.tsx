@@ -12,10 +12,10 @@ import Modal from "components/Modal/Modal";
 
 const Checkout = () => {
   type ResponseType = {
-    isReserved: boolean | null
-  }
+    isReserved: boolean | null;
+  };
 
-  const name = localStorage.getItem('currentUser');
+  const name = localStorage.getItem("currentUser");
 
   const [inputValues, setInputValues] = useState({
     fullName: name,
@@ -75,23 +75,20 @@ const Checkout = () => {
     const data = {
       date: inputValues.date,
       time: inputValues.time,
-    };
+    }
 
-    Axios.post("http://localhost:5000/reservation", {
-      data,
-    }).then((response) => {
-      setResponse(response.data);
-      setResponse({
-        isReserved: response.data === "Already reserved" ? true : false,
-      });
-    });
+    Axios.get("http://localhost:3001/reservation").then((response) => {
+      console.log(response)
+    }).catch((err) => {
+      console.log(err)
+    })
   };
 
   useEffect(() => {
     if (response?.isReserved === false) {
       navigate("/", { replace: true });
     }
-  }, [response, navigate])
+  }, [response, navigate]);
 
   return (
     <>
