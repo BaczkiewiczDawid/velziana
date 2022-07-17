@@ -98,7 +98,9 @@ const Checkout = () => {
       data: data,
     })
       .then((response) => {
-        console.log(response);
+        setResponse({
+          isReserved: response.data === 'Already reserved' ? true : false,
+        })
       })
       .catch((err) => {
         console.log(err);
