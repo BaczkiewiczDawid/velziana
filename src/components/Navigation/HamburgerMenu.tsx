@@ -16,10 +16,10 @@ const HamburgerMenu = () => {
       </HamburgerWrapper>
       {isOpen && (
         <NavigationContent>
-          <Link to="/">Dishes</Link>
-          <Link to="/cart">Cart</Link>
-          <Link to="/bills">Bills</Link>
-          <Link to="/settings">Settings</Link>
+          <Link to="/" onClick={() => setIsOpen(false)}>Dishes</Link>
+          <Link to="/cart" onClick={() => setIsOpen(false)}>Cart</Link>
+          <Link to="/bills" onClick={() => setIsOpen(false)}>Bills</Link>
+          <Link to="/settings" onClick={() => setIsOpen(false)}>Settings</Link>
         </NavigationContent>
       )}
     </>
