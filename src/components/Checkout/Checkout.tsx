@@ -50,7 +50,7 @@ const Checkout = () => {
   });
   const navigate = useNavigate();
 
-  const { setShoppingCartItems } = useContext(ShoppingCartContext);
+  const { setShoppingCartItems, shoppingCartItems } = useContext(ShoppingCartContext);
 
   const handleInputValues = (e: any) => {
     const inputsVal = {
@@ -87,6 +87,21 @@ const Checkout = () => {
     }
   };
 
+  const handleNewOrder = () => {
+    const data = {
+      id: shoppingCartItems,
+      orderID: Math.floor(Math.random() * 1000000),
+      client: 'Dawid Bączkiewicz',
+    }
+    
+    Axios.post('http://localhost:3001/new-order', {
+      data: data,
+    })
+    .then((response) => {
+      console.log(response);
+    })
+  }
+
   const handleReservation = () => {
     const data = {
       date: inputValues.date,
@@ -101,10 +116,14 @@ const Checkout = () => {
         setResponse({
           isReserved: response.data === 'Already reserved' ? true : false,
         })
+
+        if (response.data !== 'Already reserved') {
+          handleNewOrder();
+        }
       })
       .catch((err) => {
         console.log(err);
-      });
+    });
   };
 
   useEffect(() => {
