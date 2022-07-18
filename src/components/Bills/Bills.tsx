@@ -1,8 +1,11 @@
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import useCurrentUser from "hooks/useCurrentUser";
 import BillsList from "data/BillsList";
-import Dish from "components/Bills/Dish";
-import Order from 'components/Bills/Order';
+import Axios from "axios";
+import DishesList from "data/DishesList";
+import Order from "components/Bills/Order";
+import groupArray from "group-array";
 
 const Wrapper = styled.section`
   display: flex;
@@ -28,18 +31,29 @@ const Wrapper = styled.section`
 
 const Bills = () => {
   const currentUser = useCurrentUser();
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    Axios.post("http://localhost:3001/orders-list", {
+      data: currentUser,
+    }).then((response) => {
+      setList(response.data);
+    });
+  }, []);
 
   return (
     <Wrapper>
-      {BillsList.map((bill) => (
-        <Order
-          orderNum={bill.orderNum}
-          table={bill.table}
-          date={bill.date}
-          totalPrice={bill.totalPrice}
-          dishes={bill.dishes}
-        />
-      ))}
+      {list.map((el: any) => {
+        return (
+          <Order
+            orderNum={el.orderID}
+            table={el.table}
+            date={el.date}
+            totalPrice={3}
+            dishes={el.dishes}
+          />
+        );
+      })}
     </Wrapper>
   );
 };

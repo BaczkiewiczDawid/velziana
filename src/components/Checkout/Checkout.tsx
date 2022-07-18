@@ -16,17 +16,17 @@ const Checkout = () => {
   };
 
   type InputType = {
-    fullName: string,
-    email: string,
-    phoneNumber: string,
-    addressLine1: string | number,
-    addressLine2: string | number,
-    postalCode: string,
-    city: string,
-    date: String | Date,
-    time: string,
-    table: number
-  }
+    fullName: string;
+    email: string;
+    phoneNumber: string;
+    addressLine1: string | number;
+    addressLine2: string | number;
+    postalCode: string;
+    city: string;
+    date: String | Date;
+    time: string;
+    table: number;
+  };
 
   const name = localStorage.getItem("currentUser");
 
@@ -42,7 +42,7 @@ const Checkout = () => {
     city: "",
     date: today,
     time: "8:00 - 10:00",
-    table: 1
+    table: 1,
   });
   const [page, setPage] = useState(1);
   const [response, setResponse] = useState<ResponseType>({
@@ -50,7 +50,8 @@ const Checkout = () => {
   });
   const navigate = useNavigate();
 
-  const { setShoppingCartItems, shoppingCartItems } = useContext(ShoppingCartContext);
+  const { setShoppingCartItems, shoppingCartItems } =
+    useContext(ShoppingCartContext);
 
   const handleInputValues = (e: any) => {
     const inputsVal = {
@@ -87,43 +88,39 @@ const Checkout = () => {
     }
   };
 
+  const data = {
+    id: shoppingCartItems,
+    orderID: Math.floor(Math.random() * 1000000),
+    client: name,
+    date: inputValues.date,
+    time: inputValues.time,
+    table: inputValues.table,
+  };
+
   const handleNewOrder = () => {
-    const data = {
-      id: shoppingCartItems,
-      orderID: Math.floor(Math.random() * 1000000),
-      client: 'Dawid Bączkiewicz',
-    }
-    
-    Axios.post('http://localhost:3001/new-order', {
+    Axios.post("http://localhost:3001/new-order", {
       data: data,
-    })
-    .then((response) => {
+    }).then((response) => {
       console.log(response);
-    })
-  }
+    });
+  };
 
   const handleReservation = () => {
-    const data = {
-      date: inputValues.date,
-      time: inputValues.time,
-      table: inputValues.table,
-    };
-
     Axios.post("http://localhost:3001/reservation", {
       data: data,
     })
       .then((response) => {
         setResponse({
-          isReserved: response.data === 'Already reserved' ? true : false,
-        })
+          isReserved: response.data === "Already reserved" ? true : false,
+        });
 
-        if (response.data !== 'Already reserved') {
+        if (response.data !== "Already reserved") {
           handleNewOrder();
         }
       })
       .catch((err) => {
         console.log(err);
-    });
+      });
   };
 
   useEffect(() => {
