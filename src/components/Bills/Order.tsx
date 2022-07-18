@@ -1,5 +1,5 @@
 import { OrderWrapper, Info, DateInfo } from "components/Bills/Order.style";
-import BillsList from "data/BillsList";
+import DishesList from "data/DishesList";
 import Dish from "components/Bills/Dish";
 
 type OrderTypes = {
@@ -11,12 +11,22 @@ type OrderTypes = {
 };
 
 type DishType = {
-    img: string;
-    name: string;
-    price: number;
-}
+  img: string;
+  name: string;
+  price: number;
+};
 
 const Order = ({ orderNum, table, date, totalPrice, dishes }: OrderTypes) => {
+  const dishesArray: any[] = [];
+
+  dishes.map((dish: any) => {
+    const itemID: number = dish.itemID;
+
+    dishesArray.push(DishesList.find((el) => el.id === itemID));
+  })
+
+  console.log(dishesArray)
+
   return (
     <OrderWrapper>
       <Info>
@@ -24,7 +34,7 @@ const Order = ({ orderNum, table, date, totalPrice, dishes }: OrderTypes) => {
         <span>Table {table}</span>
       </Info>
       <DateInfo>{date}</DateInfo>
-      {dishes.map((dish: DishType) => (
+      {dishesArray.map((dish: DishType) => (
         <Dish img={dish.img} name={dish.name} price={dish.price} />
       ))}
       <Info>
