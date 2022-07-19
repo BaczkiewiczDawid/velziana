@@ -61,6 +61,8 @@ const Checkout = () => {
     setInputValues({ ...inputsVal, [e.target.name]: e.target.value });
   };
 
+  const totalPrice = localStorage.getItem('totalPrice'); 
+
   const handleNextPage = () => {
     if (
       page === 1 &&
@@ -95,6 +97,7 @@ const Checkout = () => {
     date: inputValues.date,
     time: inputValues.time,
     table: inputValues.table,
+    totalPrice: totalPrice,
   };
 
   const handleNewOrder = () => {

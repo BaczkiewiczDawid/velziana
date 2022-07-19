@@ -44,6 +44,8 @@ const ShoppingCart = () => {
 
   const totalPrice: number = sumPrice(pricesList);
 
+  localStorage.setItem('totalPrice', totalPrice.toString());
+
   return (
     <Container>
       <Wrapper>
