@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { OrderWrapper, Info, DateInfo } from "components/Bills/Order.style";
 import DishesList from "data/DishesList";
 import Dish from "components/Bills/Dish";
@@ -25,7 +24,7 @@ const Order = ({ orderNum, table, date, totalPrice, dishes }: OrderTypes) => {
 
     dishesArray.push(DishesList.find((el) => el.id === itemID));
   });
-  
+
   return (
     <OrderWrapper>
       <Info>
@@ -38,7 +37,7 @@ const Order = ({ orderNum, table, date, totalPrice, dishes }: OrderTypes) => {
       ))}
       <Info>
         <h4>Total</h4>
-        <p>${totalPrice}</p>
+        <p>${dishes[0].totalPrice}</p>
       </Info>
     </OrderWrapper>
   );
