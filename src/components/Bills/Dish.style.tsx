@@ -9,12 +9,17 @@ export const DishInfo = styled.div`
 `;
 
 export const ImgWrapper = styled.div`
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
+  position: relative;
 
   img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 `;
 

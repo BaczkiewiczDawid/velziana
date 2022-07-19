@@ -6,7 +6,7 @@ export const OrderWrapper = styled.article`
   -webkit-box-shadow: -7px 12px 27px -7px rgba(66, 68, 90, 1);
   -moz-box-shadow: -7px 12px 27px -7px rgba(66, 68, 90, 1);
   box-shadow: -7px 12px 27px -7px rgba(66, 68, 90, 1);
-  padding: 0 1rem;
+  padding: 1rem 2rem;
 
   &:nth-child(n + 2) {
     margin-top: 5rem;
