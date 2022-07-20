@@ -1,4 +1,4 @@
-import { OrderWrapper, Info, DateInfo } from "components/Bills/Order.style";
+import { OrderWrapper, Info, DateInfo, DishesWrapper } from "components/Bills/Order.style";
 import DishesList from "data/DishesList";
 import Dish from "components/Bills/Dish";
 
@@ -32,12 +32,14 @@ const Order = ({ orderNum, table, date, totalPrice, dishes }: OrderTypes) => {
         <span>Table {table}</span>
       </Info>
       <DateInfo>{date}</DateInfo>
-      {dishesArray.map((dish: DishType) => (
-        <Dish img={dish.img} name={dish.name} price={dish.price} />
-      ))}
-      <Info>
+      <DishesWrapper>
+        {dishesArray.map((dish: DishType) => (
+          <Dish img={dish.img} name={dish.name} price={dish.price} />
+        ))}
+      </DishesWrapper>
+      <Info secondary>
         <h4>Total</h4>
-        <p>${dishes[0].totalPrice}</p>
+        <p>${dishes[0]?.totalPrice}</p>
       </Info>
     </OrderWrapper>
   );
