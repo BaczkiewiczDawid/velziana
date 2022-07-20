@@ -16,8 +16,6 @@ const Bills = () => {
     });
   }, []);
 
-  console.log(list)
-
   return (
     <Wrapper>
       {list.map((el: any) => {

@@ -51,6 +51,7 @@ const ShoppingCart = () => {
       <Wrapper>
         <h1>ShoppingCart</h1>
         <CartItemsWrapper>
+          {itemsList.length === 0 ? <p>There's nothing in Your shopping cart</p> : null}
           {itemsList.map((item) => {
             return (
               <CartItem
